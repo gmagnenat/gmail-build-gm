@@ -53,15 +53,15 @@ function EmailList() {
 
       <div className='emailList__list'>
         <EmailRow
-          title='Twitch'
-          subject='Hey fellow streamer!!'
-          description='This is a test'
+          title='Gwen'
+          subject='Hello'
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce blandit est sit amet suscipit bibendum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam dictum massa dui, sit amet malesuada eros rutrum vel. Proin tincidunt tempor leo, non scelerisque libero tristique sed. Sed euismod tempor magna, a blandit elit volutpat eu. Morbi sit amet finibus lacus, ac facilisis mauris. Phasellus quis pharetra felis. Nulla rhoncus hendrerit arcu, vitae pellentesque mi venenatis eget. Sed semper vulputate lacinia. Donec hendrerit ligula eu odio mollis sollicitudin. Phasellus fringilla odio at velit fringilla fringilla. Nulla non leo quis magna finibus egestas. Mauris velit sem, aliquam in ipsum vel, finibus placerat elit.'
           time='10pm'
         />
         <EmailRow
-          title='Twitch'
-          subject='Hey fellow streamer!!'
-          description='This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test'
+          title='Jenn'
+          subject='re hello'
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce blandit est sit amet suscipit bibendum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam dictum massa dui, sit amet malesuada eros rutrum vel. Proin tincidunt tempor leo, non scelerisque libero tristique sed. Sed euismod tempor magna, a blandit elit volutpat eu. Morbi sit amet finibus lacus, ac facilisis mauris. Phasellus quis pharetra felis. Nulla rhoncus hendrerit arcu, vitae pellentesque mi venenatis eget. Sed semper vulputate lacinia. Donec hendrerit ligula eu odio mollis sollicitudin. Phasellus fringilla odio at velit fringilla fringilla. Nulla non leo quis magna finibus egestas. Mauris velit sem, aliquam in ipsum vel, finibus placerat elit.'
           time='10pm'
         />
       </div>
