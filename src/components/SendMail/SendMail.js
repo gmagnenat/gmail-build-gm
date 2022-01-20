@@ -4,8 +4,13 @@ import { Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { closeSendMessage } from '../../features/mailSlice';
+import { db, collection } from '../../firebase';
+import { addDoc, serverTimestamp } from 'firebase/firestore';
 
 function SendMail() {
+  // collection reference
+  const colRef = collection(db, 'emails');
+
   const {
     register,
     handleSubmit,
@@ -16,6 +21,14 @@ function SendMail() {
 
   const onSubmit = (formData) => {
     console.log(formData);
+    addDoc(colRef, {
+      to: formData.to,
+      subject: formData.subject,
+      message: formData.message,
+      timestamp: serverTimestamp(),
+    });
+
+    dispatch(closeSendMessage());
   };
 
   console.log(errors);
@@ -34,7 +47,7 @@ function SendMail() {
         <input
           {...register('to', { required: true })}
           placeholder='To'
-          type='text'
+          type='email'
         />
         {errors.to && <p className='sendMail__error'>To is Required</p>}
         <input

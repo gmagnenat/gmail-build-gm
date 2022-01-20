@@ -1,3 +1,5 @@
+import React, {useEffect, useState} from 'react';
+
 import { Checkbox, IconButton } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import RedoIcon from '@mui/icons-material/Redo';
@@ -12,8 +14,27 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import Section from '../Section';
 import './EmailList.css';
 import EmailRow from '../EmailRow';
+import { onSnapshot, setPosts, db, query, orderBy, collection } from '../../firebase'
 
 function EmailList() {
+  const [emails, setEmails] = useState([]);
+  const colRef = collection(db, 'emails');
+  const q = query(colRef, orderBy('timestamp', 'desc'));
+
+// get posts once on page reload
+useEffect(() => {
+  onSnapshot(q, (snapshot) => {
+    console.log(snapshot);
+    setEmails(
+      snapshot.docs.map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }))
+    );
+  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
+
   return (
     <div className='emailList'>
       <div className='emailList__settings'>
@@ -52,7 +73,17 @@ function EmailList() {
       </div>
 
       <div className='emailList__list'>
-        <EmailRow
+        {emails.map(({id, data: {to, subject, message, timestamp }}) => (
+          <EmailRow 
+            id={id}
+            key={id}
+            title={to}
+            subject={subject}
+            description={message}
+            time={new Date(timestamp?.seconds * 1000).toUTCString()}
+          />
+        ))}
+        {/* <EmailRow
           title='Gwen'
           subject='Hello'
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce blandit est sit amet suscipit bibendum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam dictum massa dui, sit amet malesuada eros rutrum vel. Proin tincidunt tempor leo, non scelerisque libero tristique sed. Sed euismod tempor magna, a blandit elit volutpat eu. Morbi sit amet finibus lacus, ac facilisis mauris. Phasellus quis pharetra felis. Nulla rhoncus hendrerit arcu, vitae pellentesque mi venenatis eget. Sed semper vulputate lacinia. Donec hendrerit ligula eu odio mollis sollicitudin. Phasellus fringilla odio at velit fringilla fringilla. Nulla non leo quis magna finibus egestas. Mauris velit sem, aliquam in ipsum vel, finibus placerat elit.'
@@ -63,7 +94,7 @@ function EmailList() {
           subject='re hello'
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce blandit est sit amet suscipit bibendum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam dictum massa dui, sit amet malesuada eros rutrum vel. Proin tincidunt tempor leo, non scelerisque libero tristique sed. Sed euismod tempor magna, a blandit elit volutpat eu. Morbi sit amet finibus lacus, ac facilisis mauris. Phasellus quis pharetra felis. Nulla rhoncus hendrerit arcu, vitae pellentesque mi venenatis eget. Sed semper vulputate lacinia. Donec hendrerit ligula eu odio mollis sollicitudin. Phasellus fringilla odio at velit fringilla fringilla. Nulla non leo quis magna finibus egestas. Mauris velit sem, aliquam in ipsum vel, finibus placerat elit.'
           time='10pm'
-        />
+        /> */}
       </div>
     </div>
   );
