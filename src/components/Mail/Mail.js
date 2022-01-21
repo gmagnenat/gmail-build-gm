@@ -14,70 +14,70 @@ import PrintIcon from '@mui/icons-material/Print';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import {selectOpenMail} from '../../features/mailSlice';
+import { selectOpenMail } from '../../features/mailSlice';
 
 function Mail() {
-  const navigate = useNavigate();
-  const selectedMail = useSelector(selectOpenMail);
+	const navigate = useNavigate();
+	const selectedMail = useSelector(selectOpenMail);
 
-  return (
-    <div className='mail'>
-      <div className='mail__tools'>
-        <div className='mail__toolsLeft'>
-          <IconButton onClick={() => navigate('/')}>
-            <ArrowBackIcon />
-          </IconButton>
-          <IconButton>
-            <MoveToInboxIcon />
-          </IconButton>
-          <IconButton>
-            <ErrorIcon />
-          </IconButton>
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-          <IconButton>
-            <EmailIcon />
-          </IconButton>
-          <IconButton>
-            <WatchLaterIcon />
-          </IconButton>
-          <IconButton>
-            <CheckCircleIcon />
-          </IconButton>
-          <IconButton>
-            <LabelImportantIcon />
-          </IconButton>
-          <IconButton>
-            <MoreVertIcon />
-          </IconButton>
-        </div>
-        <div className='mail__toolsRight'>
-          <IconButton>
-            <UnfoldMoreIcon />
-          </IconButton>
-          <IconButton>
-            <PrintIcon />
-          </IconButton>
-          <IconButton>
-            <ExitToAppIcon />
-          </IconButton>
-        </div>
-      </div>
-      <div className='mail__body'>
-        <div className='mail__bodyHeader'>
-          <h2>{selectedMail?.subject}</h2>
-          <LabelImportantIcon className='mail__important' />
-          <p>{selectedMail?.title}</p>
-          <p className='mail__time'>{selectedMail?.time}</p>
-        </div>
+	return (
+		<div className="mail">
+			<div className="mail__tools">
+				<div className="mail__toolsLeft">
+					<IconButton onClick={() => navigate('/')}>
+						<ArrowBackIcon />
+					</IconButton>
+					<IconButton>
+						<MoveToInboxIcon />
+					</IconButton>
+					<IconButton>
+						<ErrorIcon />
+					</IconButton>
+					<IconButton>
+						<DeleteIcon />
+					</IconButton>
+					<IconButton>
+						<EmailIcon />
+					</IconButton>
+					<IconButton>
+						<WatchLaterIcon />
+					</IconButton>
+					<IconButton>
+						<CheckCircleIcon />
+					</IconButton>
+					<IconButton>
+						<LabelImportantIcon />
+					</IconButton>
+					<IconButton>
+						<MoreVertIcon />
+					</IconButton>
+				</div>
+				<div className="mail__toolsRight">
+					<IconButton>
+						<UnfoldMoreIcon />
+					</IconButton>
+					<IconButton>
+						<PrintIcon />
+					</IconButton>
+					<IconButton>
+						<ExitToAppIcon />
+					</IconButton>
+				</div>
+			</div>
+			<div className="mail__body">
+				<div className="mail__bodyHeader">
+					<h2>{selectedMail?.subject}</h2>
+					<LabelImportantIcon className="mail__important" />
+					<p>{selectedMail?.title}</p>
+					<p className="mail__time">{selectedMail?.time}</p>
+				</div>
 
-        <div className='mail__message'>
-          <p>{selectedMail?.description}</p>
-        </div>
-      </div>
-    </div>
-  );
+				<div className="mail__message">
+					<p>{selectedMail?.description}</p>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default Mail;
